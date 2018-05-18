@@ -33,19 +33,9 @@ final class ApplicationCoordinator: BaseCoordinator {
     // MARK: - Private methods
     
     private func runAuthFlow() {
-        var coordinator = self.coordinatorFactory.makeFirstCoordinatorBox(router: self.router, coordinatorFactory: self.coordinatorFactory)
+        let coordinator = self.coordinatorFactory.makeFirstCoordinatorBox(router: self.router, coordinatorFactory: self.coordinatorFactory)
         self.addDependency(coordinator)
         coordinator.start()
-        
-        
-//        var coordinator = self.coordinatorFactory.makeAuthCoordinatorBox(router: self.router, coordinatorFactory: self.coordinatorFactory)
-//        coordinator.finishFlow = { [weak self] in
-//            self?.removeDependency(coordinator)
-//            self?.launchInstructor = LaunchInstructor.configure(tutorialWasShown: true, isAutorized: true)
-//            self?.start()
-//        }
-//        self.addDependency(coordinator)
-//        coordinator.start()
     }
     
     private func runOnboardingFlow() {
