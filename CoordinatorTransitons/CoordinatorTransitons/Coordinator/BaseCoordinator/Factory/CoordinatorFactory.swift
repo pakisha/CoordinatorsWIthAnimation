@@ -9,20 +9,20 @@
 import Foundation
 
 protocol CoordinatorFactoryProtocol {
-    func makeFirstCoordinatorBox(router: RouterProtocol, coordinatorFactory: CoordinatorFactoryProtocol) -> Coordinator & CoordinatorFinishOutput
-    func makeSecondCoordinatorBox(router: RouterProtocol) -> Coordinator & CoordinatorFinishOutput
+    func makeFirstCoordinatorBox(router: RouterProtocol, coordinatorFactory: CoordinatorFactoryProtocol) -> FirstCoordinator
+    func makeSecondCoordinatorBox(router: RouterProtocol) -> SecondCoordinator
 }
 
 final class CoordinatorFactory: CoordinatorFactoryProtocol {
     
     // MARK: - CoordinatorFactoryProtocol
     
-    func makeFirstCoordinatorBox(router: RouterProtocol, coordinatorFactory: CoordinatorFactoryProtocol) -> Coordinator & CoordinatorFinishOutput {
+    func makeFirstCoordinatorBox(router: RouterProtocol, coordinatorFactory: CoordinatorFactoryProtocol) -> FirstCoordinator {
         let coordinator = FirstCoordinator(router: router, coordinatorFactory: coordinatorFactory)
         return coordinator
     }
     
-    func makeSecondCoordinatorBox(router: RouterProtocol) -> Coordinator & CoordinatorFinishOutput {
+    func makeSecondCoordinatorBox(router: RouterProtocol) -> SecondCoordinator {
         let coordinator = SecondCoordinator(router: router)
         return coordinator
     }

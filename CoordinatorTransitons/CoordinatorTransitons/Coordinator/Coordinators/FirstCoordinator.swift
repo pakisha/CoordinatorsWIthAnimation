@@ -41,8 +41,8 @@ final class FirstCoordinator: BaseCoordinator, CoordinatorFinishOutput {
     }
     
     private func showCViewController(module: (Presentable & UIViewController)) {
-        var coordinator = self.coordinatorFactory.makeSecondCoordinatorBox(router: self.router)
-        coordinator.finishFlow = { [weak self, weak module] in
+        let coordinator = self.coordinatorFactory.makeSecondCoordinatorBox(router: self.router)
+        coordinator.finishFlow = { [weak self, weak module, unowned coordinator] in
             self?.removeDependency(coordinator)
             self?.router.popToModule(module: module, animated: true)
         }
